@@ -36,10 +36,9 @@ namespace DotnetDISingletonDisposingPoC
             while(_scopeStack.TryPop(out IServiceScope scope))
             {
                 scope.Dispose();
-                System.IO.File.AppendAllText("dbg.txt", "disposing some scope\r\n");
             }
 
-            _services = null;
+            _services = null; // I also tried to convince GC to clean it up and force Dispose. Nope.
         }
     }
 }
